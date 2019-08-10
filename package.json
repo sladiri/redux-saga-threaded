@@ -1,0 +1,36 @@
+{
+  "name": "new",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "main": "src/index.js",
+  "dependencies": {
+    "comlink": "4.0.2",
+    "immer": "^4.0.0-beta.0",
+    "lodash.merge": "^4.6.2",
+    "lodash.set": "^4.3.2",
+    "prettier": "1.18.2",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-redux": "7.1.0",
+    "react-scripts": "latest",
+    "redux-saga": "latest"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": {
+    "production": [
+      "last 2 chrome version",
+      "last 2 firefox version"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version"
+    ]
+  }
+}

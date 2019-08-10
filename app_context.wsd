@@ -1,0 +1,80 @@
+@startuml
+skinparam componentStyle uml2
+
+' skinparam component {
+' 	backgroundColor<<Bounded Context>> Yellow
+' }
+
+title Application Contexts with Redux
+' show view + filter panel example?
+
+node "Model" {
+
+  component SagaQueue <<Saga>> [
+    Action Queue
+    - triggers state update
+    - creates state event
+  ]
+
+  component SagaBG <<Saga>> [
+    Optional Features
+
+    a. Background Action
+    - creates task event
+    - can cancel task
+    - creates action event
+    - for long running actions
+
+    b. Coordinator
+    - coordinates between models
+    - eg. unrelated components
+  ]
+
+  component StateUpdate <<Bounded Context>> [
+    <b>State Update</b>
+    - processes action
+    - mutates model state
+  ]
+
+  database "Local Storage" as DB
+  cloud API
+
+  component Action [
+    Action Creator
+    - creates action event
+    - notifies action was processed or cancelled
+  ]
+
+}
+
+node UI {
+
+  component User
+
+  component Component <<Observer>> [
+    Component
+    - renders model(s)
+    - passes data from DOM to model
+  ]
+
+  component Reducer <<Bounded Context>> [
+    <b>Reducer</b>
+  ]
+
+  database "Action Log" <<Event Log>> as EventLog
+
+}
+
+User ..> Component : Command
+Component .> Action
+Component ..> Reducer
+Action <.. SagaQueue
+SagaBG .up.> Action
+SagaBG .left.> SagaQueue
+SagaQueue .down.> StateUpdate : Command
+StateUpdate ..> DB
+StateUpdate .> API
+Reducer .right.> SagaQueue
+Reducer ..> EventLog
+
+@enduml

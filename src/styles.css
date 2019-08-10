@@ -1,0 +1,11 @@
+body {
+  color: white;
+  background-color: rgb(37, 37, 37);
+  font-family: sans-serif;
+}
+
+button {
+  background-color: rgb(48, 48, 48);
+  color: white;
+  border-color: rgb(58, 58, 58);
+}
