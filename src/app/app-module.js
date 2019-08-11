@@ -1,13 +1,6 @@
-import { createModule } from "../module/create-module";
+import { createUiModule } from "../module/create-ui-module";
 import { createInitialState } from "./model/create-inital-state";
-import { updateState } from "./model/update-state";
 import { createContainer } from "./ui/create-container";
-import { appSaga } from "./model/saga";
 
-// webpack throws error if variable name is 'module'
-export const appModule = createModule(
-  createInitialState,
-  updateState,
-  createContainer,
-  appSaga,
-);
+// TODO: bug? webpack throws error if variable name is 'module'
+export const appModule = createUiModule(createInitialState, createContainer);

@@ -44,7 +44,7 @@ Immer allows to pass state efficiently between UI and Model inside the Web Worke
 ## TODOs
 
 - app example is WIP
-- actually use Web Workers (optionally per module)
+- connect remote model and redux-store
 
 ## Diagram
 

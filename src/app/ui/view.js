@@ -1,17 +1,6 @@
 import React, { Component } from "react";
-import { wrap } from "comlink";
 
 export class App extends Component {
-  async useWorker() {
-    if (!this.foo) {
-      const Foo = wrap(
-        new Worker("../model/foo.worker.js", { type: "module" }),
-      );
-      this.foo = await new Foo();
-    }
-    await this.foo.hey();
-  }
-
   render() {
     const { updateIsPending, count, increment, asyncIncrement } = this.props;
     return (
@@ -28,7 +17,6 @@ export class App extends Component {
             Increment After 3 seconds
           </button>
         </div>
-        <button onClick={() => this.useWorker()}>Use Web Worker</button>
       </div>
     );
   }
