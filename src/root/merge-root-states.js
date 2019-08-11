@@ -1,7 +1,7 @@
-import produce from "immer";
 import merge from "lodash.merge";
+import { produceWithDeepFreeze } from "../helper/produce-immutable-with-deepfreeze";
 
 export const mergeRootStates = (modules) =>
-  produce({}, (draft) =>
+  produceWithDeepFreeze({}, (draft) =>
     modules.reduce((acc, module) => merge(acc, module.state), draft),
   );

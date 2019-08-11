@@ -1,5 +1,5 @@
-import produce from "immer";
 import { getInPath } from "./get-in-path";
+import { produceWithDeepFreeze } from "./produce-immutable-with-deepfreeze";
 
 export const createNewState = (
   ns,
@@ -11,7 +11,7 @@ export const createNewState = (
 ) => async () => {
   let diff;
   let inverseDiff;
-  const newState = await produce(
+  const newState = await produceWithDeepFreeze(
     rootState,
     async (draft) => {
       const { meta, data } = getInPath(ns, draft);
