@@ -4,7 +4,9 @@ import { wrap } from "comlink";
 export class App extends Component {
   async useWorker() {
     if (!this.foo) {
-      const Foo = wrap(new Worker("../model/worker.js", { type: "module" }));
+      const Foo = wrap(
+        new Worker("../model/foo.worker.js", { type: "module" }),
+      );
       this.foo = await new Foo();
     }
     await this.foo.hey();

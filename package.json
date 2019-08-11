@@ -5,7 +5,6 @@
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
-    "clooney": "^0.6.6",
     "comlink": "^4.0.2",
     "deep-freeze": "0.0.1",
     "immer": "^4.0.0-beta.0",
