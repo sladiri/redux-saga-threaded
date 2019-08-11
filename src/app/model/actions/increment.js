@@ -1,4 +1,6 @@
-import { action } from "../../../root/model/actions/action";
+import { createAction } from "../../../module/create-action";
 
-export const increment = (ns, notifyPromises) => (notify) =>
-  action(ns, notifyPromises)({ increment: true }, notify);
+export const increment = createAction(
+  (cb) => [{ increment: true }, cb],
+  "INCREMENT",
+);

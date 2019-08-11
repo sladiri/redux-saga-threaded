@@ -1,14 +1,9 @@
-import { fork } from "redux-saga/effects";
-import { ACTION, UPDATE_CONTEXT } from "../../root/model/actions/types";
-import { updateStateQueue } from "../../root/model/sagas/update-state-queue";
-import { updateState } from "./update-state";
+import { take } from "redux-saga/effects";
+import { ACTION_EVENT } from "../../module/actions/types";
 
-export const createSaga = (ns) =>
-  function* appSaga() {
-    yield fork(updateStateQueue, ns, updateState, [
-      ACTION(ns),
-      UPDATE_CONTEXT(ns),
-    ]);
-    //   yield takeLatest(ENQUEUE_BG, sagaBg);
-    //   yield takeEvery(NOTIFY_VIEW, sagaNotifyView);
-  };
+export function* appSaga(ns) {
+  while (true) {
+    const action = yield take(({ type }) => type.startsWith(ACTION_EVENT(ns)));
+    console.log(`[${ns}] appSaga got action`, action);
+  }
+}

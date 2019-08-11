@@ -1,5 +1,5 @@
 import merge from "lodash.merge";
-import { produceWithDeepFreeze } from "../helper/produce-immutable-with-deepfreeze";
+import { produceWithDeepFreeze } from "../_helper/produce-immutable-with-deepfreeze";
 
 export const mergeRootStates = (modules) =>
   produceWithDeepFreeze({}, (draft) =>

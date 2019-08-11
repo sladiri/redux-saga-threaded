@@ -7,7 +7,7 @@ import { createStore, applyMiddleware } from "redux";
 import createSagaMiddleware from "redux-saga";
 
 import { reducer } from "./root/ui/reducer";
-import { rootSaga } from "./root/model/sagas/root-saga";
+import { startModules } from "./root/model/sagas/start-modules";
 import { rootModules, createRootState } from "./root/create-root-modules";
 
 const sagaMiddleware = createSagaMiddleware({
@@ -19,15 +19,13 @@ const store = createStore(
   applyMiddleware(sagaMiddleware),
 );
 
-sagaMiddleware.run(rootSaga, rootModules);
+sagaMiddleware.run(startModules, rootModules);
 
 const Main = () => (
   <Provider store={store}>
-    {rootModules
-      .filter((m) => !!m.Container)
-      .map((m, i) => (
-        <m.Container key={i} />
-      ))}
+    {rootModules.map((m, i) => (
+      <m.Container key={i} />
+    ))}
   </Provider>
 );
 

@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { getInPath } from "../../helper/get-in-path";
+import { getInPath } from "../../_helper/get-in-path";
 import { increment } from "../model/actions/increment";
 import { asyncIncrement } from "../model/actions/async-increment";
 import { App } from "./view";
@@ -12,13 +12,13 @@ const mapStateToProps = (ns) => (root) => {
   };
 };
 
-const mapDispatchToProps = (ns, notifyPromises) => ({
-  increment: increment(ns, notifyPromises),
-  asyncIncrement: asyncIncrement(ns, notifyPromises),
+const mapDispatchToProps = (...args) => ({
+  increment: increment(...args),
+  asyncIncrement: asyncIncrement(...args),
 });
 
-export const createContainer = (ns) =>
+export const createContainer = (...args) =>
   connect(
-    mapStateToProps(ns),
-    mapDispatchToProps(ns),
+    mapStateToProps(...args),
+    mapDispatchToProps(...args),
   )(App);

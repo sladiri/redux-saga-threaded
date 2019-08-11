@@ -9,7 +9,7 @@ import {
 } from "redux-saga/effects";
 import { getInPath } from "../../../helper/get-in-path";
 import { createNewState } from "../../../helper/create-new-state";
-import { DATA, UPDATE_CONTEXT } from "../actions/types";
+import { DATA, UPDATE_CONTEXT_COMMAND } from "../module/actions/types";
 
 export function* updateStateQueue(ns, updateState, actionSelector) {
   console.log(`[${ns}] updateStateQueue start`);
@@ -20,7 +20,7 @@ export function* updateStateQueue(ns, updateState, actionSelector) {
     while (true) {
       const event = yield take(events);
       const { type, payload, corrId } = event;
-      if (type === UPDATE_CONTEXT(ns)) {
+      if (type === UPDATE_CONTEXT_COMMAND(ns)) {
         // setContext is not shared across forked sagas, so must do it here
         yield setContext({ [ns]: payload });
         continue;
