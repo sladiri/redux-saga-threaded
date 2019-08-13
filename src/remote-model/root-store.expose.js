@@ -1,4 +1,4 @@
 import { expose } from "comlink";
-import { store } from "../root/create-store";
+import { standaloneSaga } from "../root/create-standalone-redux-saga";
 
-expose(store);
+expose(standaloneSaga);
